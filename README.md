@@ -1,9 +1,11 @@
 # DellWarranty
 A Dell warranty module that takes a CSV file input and outputs an object of results.
 
+## Installing
 To install Dell warranty download and copy to your 'My Documents' at;
- My Documents\WindowsPowershell\Modules\DellWarranty
- 
+	My Documents\WindowsPowershell\Modules\DellWarranty
+
+## Examples
  A simple lookup (For testing you can use asset tags Test1 and Test2 these will give valid responses)
  ```PowerShell
 Get-DellWarranty Test1
