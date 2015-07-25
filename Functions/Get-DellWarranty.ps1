@@ -7,18 +7,19 @@
                    Position = 0)]
         [Alias('SerialNumber')]
         [String] $AssetTag,
+        #Optionally pass a hostname for easier reporting on the results
         [Parameter(Mandatory = $false,
                    ValueFromPipelineByPropertyName = $true,
                    ValueFromPipeline = $false,
                    Position = 1)]
         [Alias('PSComputerName')]
-        [String] $Hostname,
-        [uri]$ServiceURI='http://xserv.dell.com/services/assetservice.asmx?WSDL'
+        [String] $Hostname
     )
 
     begin
     {
-        $ErrorActionPreference = 'Stop'
+        #Dell Web Service URI
+        [uri]$ServiceURI='http://xserv.dell.com/services/assetservice.asmx?WSDL'
 
         #Build output list up
         $OutputHeaders = @(
@@ -47,7 +48,7 @@
         }
         catch
         {
-            Write-Error "Unable to connect to Dell warranty service URI - $_"
+            Write-Error "Unable to connect to Dell warranty service URI '$ServiceURI' - $_"
             return
         }
     }
@@ -60,8 +61,10 @@
                 $Hostname = 'Not Provided'
             }
 
+            #Retrive Dell warranty information based on asset tag
             $DellInfo = $WebService.GetAssetInformation('12345678-1234-1234-1234-123456789012','dellwarrantycheck',$AssetTag.Trim())
             
+            #If the Dell info has entitlements loop through each one else just return the single result
             if($DellInfo.Entitlements){
                 Foreach($Entitlement IN $DellInfo.Entitlements){
                     $Out = '' | Select-Object $OutputHeaders
