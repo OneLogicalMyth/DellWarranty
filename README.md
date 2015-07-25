@@ -4,8 +4,8 @@ A Dell warranty module that takes a CSV file input and outputs an object of resu
 ## Installing
 This module can be installed from the [PowerShellGet Gallery](https://www.powershellgallery.com/packages/DellWarranty/),  You need [WMF 5](https://www.microsoft.com/en-us/download/details.aspx?id=44987) to use this feature.
 ```PowerShell
-# To install WinSCP, run the following command in the PowerShell prompt in Administrator mode:
-Install-Module -Name WinSCP
+# To install DellWarranty, run the following command in the PowerShell prompt in Administrator mode:
+Install-Module -Name DellWarranty
 ```
 
 ## Examples
