@@ -8,6 +8,18 @@ This module can be installed from the [PowerShellGet Gallery](https://www.powers
 Install-Module -Name DellWarranty
 ```
 
+## Setup
+The API key must be specified with each request, this can be achieved with the 'APIKey' parameter.
+You can request an API key from Dell at http://en.community.dell.com/dell-groups/supportapisgroup
+there is a PowerPoint file in the 'Get Started' link that gives you information on how to request one. 
+
+Or you can setup a default paramenter value in your script or PowerShell profile as;
+```PowerShell
+$PSDefaultParameterValues = @{'Get-DellWarranty:APIKey'='abcdefg123456789abcdefgh12345678'}
+```
+
+The API key will be then used as the default option, the below examples assume you have done this.
+
 ## Examples
  A simple lookup (For testing you can use asset tags Test1 and Test2 these will give valid responses)
  ```PowerShell
@@ -21,12 +33,12 @@ Looking up multiple assets
 
 Looking up multiple assets from a CSV file, you must have the headers 'Hostname' and 'AssetTag'
  ```PowerShell
-Import-Csv MyMachines.csv | Get-DellWarranty
+Get-DellWarranty -InputObject (Import-Csv MyMachines.csv)
 ```
 
 Looking up multiple assets from a CSV file and then exporting results to CSV 
  ```PowerShell
-Import-Csv MyMachines.csv | Get-DellWarranty | Export-Csv Results.csv -NoTypeInformation
+Get-DellWarranty -InputObject (Import-Csv MyMachines.csv) | Export-Csv Results.csv -NoTypeInformation
 ```
 
 Calling a WMI query to a remote machine and returning the results
