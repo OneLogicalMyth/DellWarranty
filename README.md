@@ -13,7 +13,7 @@ The API key must be specified with each request, this can be achieved with the '
 You can request an API key from Dell at http://en.community.dell.com/dell-groups/supportapisgroup
 there is a PowerPoint file in the 'Get Started' link that gives you information on how to request one. 
 
-Or you can setup a default paramenter value in your script or PowerShell profile as;
+You can setup a default paramenter value in your script or PowerShell profile as;
 ```PowerShell
 $PSDefaultParameterValues = @{'Get-DellWarranty:APIKey'='abcdefg123456789abcdefgh12345678'}
 ```
